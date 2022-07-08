@@ -1,5 +1,7 @@
 package com.marondal.test.mybatis;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,5 +27,27 @@ public class RealEstateController {
 		return realEstate;
 		
 	}
+	
+	// 특정 값 보다 적은 rentPrice 를 가진 매물을 json 으로 response 출력
+	
+	@RequestMapping("/mybatis/test01/2")
+	@ResponseBody
+	public List<RealEstate> realEstateByRentPrice(@RequestParam("rentPrice") int rentPrice) {
+		
+		List<RealEstate> list = realEstateBO.getRealEstateByRentPrice(rentPrice);
+		return list;
+	}
+	
+	// area price 
+	@ResponseBody
+	@RequestMapping("/mybatis/test01/3")
+	public List<RealEstate> realEstateByAreaPrice(
+			@RequestParam("area") int area 
+			,@RequestParam("price") int price) {
+		
+		return realEstateBO.getRealEstateByAreaPrice(area, price);
+		
+	}
+	
 
 }

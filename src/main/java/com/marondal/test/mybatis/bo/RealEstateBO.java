@@ -1,5 +1,7 @@
 package com.marondal.test.mybatis.bo;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +19,16 @@ public class RealEstateBO {
 		 RealEstate realEstate = realEstateDAO.selectRealEstate(id);
 		 
 		 return realEstate;
+	}
+	
+	// 전달 받은 rentPrice 보다 적은 월세의 매물 조회 
+	public List<RealEstate> getRealEstateByRentPrice(int rentPrice) {
+		List<RealEstate> list = realEstateDAO.selectRealEstateByRentPrice(rentPrice);
+		return list;
+	}
+	
+	public List<RealEstate> getRealEstateByAreaPrice(int area, int price) {
+		  return  realEstateDAO.selectRealEstateByAreaPrice(area, price);
 	}
 
 }

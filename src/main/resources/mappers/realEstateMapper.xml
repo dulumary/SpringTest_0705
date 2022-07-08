@@ -23,6 +23,49 @@
 			`id` = #{id}
 	
 	</select>
+	
+	<select id="selectRealEstateByRentPrice" resultType="com.marondal.test.mybatis.model.RealEstate">
+	
+		SELECT 
+			`id`
+			, `realtorId`
+			, `address`
+			, `area`
+			, `type`
+			, `price`
+			, `rentPrice`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+			`real_estate`
+		WHERE
+			<![CDATA[`rentPrice` < #{rentPrice}]]>
+		
+	</select>
+	
+	<select id="selectRealEstateByAreaPrice" 
+	resultType="com.marondal.test.mybatis.model.RealEstate"
+	parameterType="map">
+		SELECT 
+			`id`
+			, `realtorId`
+			, `address`
+			, `area`
+			, `type`
+			, `price`
+			, `rentPrice`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+			`real_estate`
+		WHERE
+		<![CDATA[
+			`area` >= #{area} 
+			AND `price` <= #{price}
+		]]>
+		ORDER BY `id` DESC
+	
+	</select>
 
 
 </mapper>
