@@ -12,6 +12,7 @@ import com.marondal.test.mybatis.bo.RealEstateBO;
 import com.marondal.test.mybatis.model.RealEstate;
 
 @Controller
+@RequestMapping("/mybatis")
 public class RealEstateController {
 	
 	@Autowired
@@ -19,7 +20,7 @@ public class RealEstateController {
 	
 	// realEstate 정보 하나 json으로 response에 출력
 	// id 가 5인 real_estate 행 json으로 response에 출력
-	@RequestMapping("/mybatis/test01/1")
+	@RequestMapping("/test01/1")
 	@ResponseBody
 	public RealEstate realEstate(@RequestParam("id") int id) {
 		RealEstate realEstate = realEstateBO.getRealEstate(id);
@@ -30,7 +31,7 @@ public class RealEstateController {
 	
 	// 특정 값 보다 적은 rentPrice 를 가진 매물을 json 으로 response 출력
 	
-	@RequestMapping("/mybatis/test01/2")
+	@RequestMapping("/test01/2")
 	@ResponseBody
 	public List<RealEstate> realEstateByRentPrice(@RequestParam("rentPrice") int rentPrice) {
 		
@@ -40,13 +41,38 @@ public class RealEstateController {
 	
 	// area price 
 	@ResponseBody
-	@RequestMapping("/mybatis/test01/3")
+	@RequestMapping("/test01/3")
 	public List<RealEstate> realEstateByAreaPrice(
 			@RequestParam("area") int area 
 			,@RequestParam("price") int price) {
 		
 		return realEstateBO.getRealEstateByAreaPrice(area, price);
 		
+	}
+	
+	@ResponseBody
+	@RequestMapping("/test02/1")
+	public String addRealEstateByObject() {
+		RealEstate realEstate = new RealEstate();
+		
+		realEstate.setRealtorId(3);
+		realEstate.setAddress("푸르지용 리버 303동 1104호");
+		realEstate.setArea(89);
+		realEstate.setType("매매");
+		realEstate.setPrice(100000);
+		
+		int count = realEstateBO.addRealEstateByObject(realEstate);
+		
+		return "삽입 결과 : " + count;
+		
+	}
+	
+	@RequestMapping("/test02/2")
+	@ResponseBody
+	public String addRealEstate(@RequestParam(value="realtorId", required=true) int realtorId) {
+		
+		int count = realEstateBO.addRealEstate(realtorId, "썅떼빌리버 오피스텔 814호", 45, "월세", 100000, 120);
+		return "삽입 결과 : " + count;
 	}
 	
 
