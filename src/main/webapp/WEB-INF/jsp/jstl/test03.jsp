@@ -44,6 +44,38 @@
 		
 		
 		</table>
+		
+		
+		<h2>카드 명세서</h2>
+		
+		<table class="table text-center">
+			<thead>
+				<tr>
+					<th>사용처</th>
+					<th>가격</th>
+					<th>사용날짜</th>
+					<th>할부</th>
+				</tr>
+			</thead>
+			<tbody>
+			
+				<c:forEach var="cardBill" items="${cardBillList }" >
+				<%-- "2025-09-18" --%>
+				<fmt:parseDate value="${cardBill.date }" pattern="yyyy-MM-dd" var="date" />
+				<tr>
+					<td>${cardBill.store }</td>
+					<td><fmt:formatNumber value="${cardBill.pay }" type="currency" /></td>
+					<td><fmt:formatDate value="${date }" pattern="yyyy년 M월 d일" /></td>
+					<td>${cardBill.installment }</td>
+				
+				</tr>
+				</c:forEach>
+				
+			
+			</tbody>
+		
+		
+		</table>
 	
 	</div>
 
