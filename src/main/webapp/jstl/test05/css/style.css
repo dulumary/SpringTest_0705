@@ -1,0 +1,52 @@
+#wrap {
+    width:1200px;
+}
+
+nav {
+    width:200px;
+    background-color: cornflowerblue;
+
+}
+
+.logo-image {
+    width: 25px;
+    width: 25px;
+}
+
+.logo-text {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+section {
+    width: 1000px;
+}
+
+.main-link {
+    color:white;
+    font-size:17px;
+    font-weight: bold;
+}
+
+.main-link:hover {
+    color:white;
+    border: 2px solid white;
+}
+
+footer {
+    height:80px;
+}
+
+.footer-logo {
+    width:200px;
+}
+
+.foot-logo-image {
+    width:120px;
+}
+
+.input-label {
+    width:130px;
+    text-align: right;
+    margin-right:10px;
+}
