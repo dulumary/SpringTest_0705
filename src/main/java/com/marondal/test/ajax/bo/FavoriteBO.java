@@ -17,5 +17,9 @@ public class FavoriteBO {
 	public List<Favorite> getFavoriteList() {
 		return favoriteDAO.selectFavoriteList();
 	}
+	
+	public int addFavorite(String name, String url) {
+		return favoriteDAO.insertFavorite(name, url);
+	}
 
 }
