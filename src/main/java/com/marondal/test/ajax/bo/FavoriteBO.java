@@ -21,5 +21,16 @@ public class FavoriteBO {
 	public int addFavorite(String name, String url) {
 		return favoriteDAO.insertFavorite(name, url);
 	}
+	
+	public boolean isDuplicateByUrl(String url) {
+		int count = favoriteDAO.selectCountByUrl(url);
+		
+		// count 0 이면 중복되지 않음
+		if(count == 0) {
+			return false;
+		} else {
+			return true;
+		}
+	}
 
 }

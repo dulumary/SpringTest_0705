@@ -64,6 +64,29 @@ public class FavoriteController {
 	}
 	
 	
+	// url을 전달 받고, 해당 url 이 이미 테이블에 저장되어 있는지 확인하고 
+	// 그 결과를 json 형태로 response에 담아 전달하는 API를 생성
+	// {"is_duplicate":true} , {"is_duplicate":false}
+	@PostMapping("/is_duplicate")
+	@ResponseBody
+	public Map<String, Boolean> isDuplicateUrl(
+			@RequestParam("url") String url) {
+		
+		Map<String, Boolean> map = new HashMap<>();
+		
+		if(favoriteBO.isDuplicateByUrl(url)) {  // url 이 중복된 상태 
+//			{"is_duplicate":true}
+			map.put("is_duplicate", true);
+		} else {  // 중복되지 않은상태 
+//			{"is_duplicate":false}
+			map.put("is_duplicate", false);
+		}
+		
+		return map;
+		
+	}
+	
+	
 	
 	
 
