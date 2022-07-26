@@ -86,6 +86,25 @@ public class FavoriteController {
 		
 	}
 	
+	// id를 전달 받고 해당 행을 삭제하는 api
+	@GetMapping("/delete")
+	@ResponseBody
+	public Map<String, String> deleteFavorite(@RequestParam("id") int id) {
+		
+		int count = favoriteBO.deleteFavorite(id);
+		Map<String, String> map = new HashMap<>();
+		// {"result":"success"}
+		if(count == 1) {  // 성공
+			map.put("result", "success");
+		} else { // 실패  {"result":"fail"}
+			map.put("result", "fail");
+		}
+		
+		return map;
+		
+	}
+	
+	
 	
 	
 	

@@ -37,6 +37,15 @@
 			var isCheckDuplicate = false;
 			var isDuplicate = false;
 			
+			$("#urlInput").on("input", function() {
+				isCheckDuplicate = false;
+				isDuplicate = false;
+				$("#availableDiv").addClass("d-none");
+				$("#duplicateDiv").addClass("d-none");
+			});
+			
+			
+			
 			$("#duplicateBtn").on("click", function() {
 				let url = $("#urlInput").val();
 				
