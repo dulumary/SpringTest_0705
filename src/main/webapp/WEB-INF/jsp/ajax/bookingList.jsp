@@ -69,7 +69,7 @@
                     			</c:otherwise>
                     		</c:choose>
                     		
-                    		<td><button type="button" class="btn btn-danger btn-sm">삭제</button></td>
+                    		<td><button type="button" data-booking-id="${booking.id }" class="delete-btn btn btn-danger btn-sm">삭제</button></td>
                     	</tr>
                    	</c:forEach>
                    
@@ -95,6 +95,41 @@
         </div>
 
     <script>
+    	$(document).ready(function() {
+    		
+    		$(".delete-btn").on("click", function() {
+    			
+    			// 해당 행을 삭제 한다. 
+    			// 삭제할 대상의 id를 얻어낸다. 
+    			let bookingId = $(this).data("booking-id");
+    			
+    			// 삭제 api를 호출한다.
+    			
+    			$.ajax({
+    				type:"get",
+    				url:"/ajax/booking/delete",
+    				data:{"id":bookingId},
+    				success:function(data) {
+    					// {"result":"success"}, {"result":"fail"}
+    					if(data.result == "success") {
+    						location.reload();
+    					} else {
+    						alert("삭제 실패!!");
+    					}
+    				},
+    				error:function() {
+    					alert("에러발생!!");
+    					
+    				}
+    			});
+    			
+    			
+    			
+    		});
+    		
+    		
+    	});
+    	
         
     </script>
     </body>
